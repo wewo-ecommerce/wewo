@@ -27,11 +27,6 @@ LÀM VIỆC TRONG TEAM
 - Tất cả đóng góp đều được ghi nhận thông qua cổ phần sở hữu App
 
 ## CẤU TRÚC FILE (lib) khi sử dụng GetX
-- main và APP (COMMOM/DATA/MODULES/ROUTES)
-- commom: nơi lưu tất cả các: size/constants/widgets/custom/thông số giao diện/... dùng chung trong giao diện trên toàn bộ app
-- data: là nơi lưu những gì liên quan dữ liệu, giao tiếp backend: model/repository/api/... dùng cho các controller trên toàn bộ app
-- modules: nơi này lưu các màn hình, chức năng với cấu trúc 3 file cho mỗi view (ví dụ: homeview/homecontroller/homebinding)
-- routes: gồm 2 file (app_pages/app_routes) là nơi khai báo các page/routes
 
 ## BACKEND
 - Ngôn ngữ Js
