@@ -28,10 +28,10 @@ LÀM VIỆC TRONG TEAM
 
 ## CẤU TRÚC FILE khi sử dụng GetX
 .
-├── android                         - contains files and folders required for running the application on an Android operating system.
-├── assets                          - contains all images and fonts of your application.
-├── ios                             - contains files required by the application to run the dart code on iOS platforms.
-├── lib                             - Most important folder in the project, used to write most of the Dart code.
+├── android                         - files and folders on an Android operating system.
+├── assets                          - contains all images and fonts
+├── ios                             - files on iOS platforms.
+├── lib                             - 
     ├── main.dart                   - starting point of the application
     ├── core
     │   ├── app_export.dart         - contains commonly used file imports 
