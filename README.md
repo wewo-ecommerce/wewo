@@ -21,7 +21,7 @@
 - Xây dựng sản phẩm phù hợp thị trường
 - Team làm việc cởi mở, thân thiện, đoàn kết và là Team MỞ (liên tục bổ sung thành viên mới)
 
-## LÀM VIỆC TRONG TEAM
+LÀM VIỆC TRONG TEAM
 - Dev có kinh nghiệm sẽ hổ trợ/review code cho dev có kinh nghiệm ít,
 - Dev có kinh nghiệm thực hiện những công việc khó. Dev kinh nghiệm ít thực hiện công việc dễ
 - Tất cả đóng góp đều được ghi nhận thông qua cổ phần sở hữu App
