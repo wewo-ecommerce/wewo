@@ -32,6 +32,7 @@ LÀM VIỆC TRONG TEAM
 ├── assets                          - contains all images and fonts
 ├── ios                             - files on iOS platforms.
 ├── lib                             - 
+
     ├── main.dart                   - starting point of the application
     ├── core
     │   ├── app_export.dart         - contains commonly used file imports 
