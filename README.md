@@ -43,7 +43,6 @@
 - Framework Flutter
 - UI mẫu tham chiếu (nó không phải là UI chính thức)
 UI mẫu dùng để tham chiếu màu săc, widgets, custom, thông số giao diện, kích cỡ text,... Nó không dùng để code các chức năng, UX, nố cục màn hình, các push màn hình,... 
-![image](https://user-images.githubusercontent.com/61767886/210504099-eab6d323-2e44-4578-987e-0263cf7b2673.png)
 ![image](https://user-images.githubusercontent.com/61767886/209053881-e647d69e-d497-4aa4-9319-68b179058d33.png)
 - UI phát họa sơ bộ
 ![image](https://user-images.githubusercontent.com/61767886/209249453-729d4bcb-58de-4db7-b815-257f6d78cc47.png)
