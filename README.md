@@ -27,12 +27,7 @@ LÀM VIỆC TRONG TEAM
 - Tất cả đóng góp đều được ghi nhận thông qua cổ phần sở hữu App
 
 ## CẤU TRÚC FILE khi sử dụng GetX
-
-├── android                         - files and folders on an Android operating system.
-├── assets                          - contains all images and fonts
-├── ios                             - files on iOS platforms.
-├── lib                             - 
-
+├── lib                             
     ├── main.dart                   - starting point of the application
     ├── core
     │   ├── app_export.dart         - contains commonly used file imports 
