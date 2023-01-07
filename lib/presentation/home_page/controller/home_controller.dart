@@ -6,6 +6,7 @@ class HomeController extends GetxController {
   HomeController(this.homeModelObj);
 
   TextEditingController group7CopyController = TextEditingController();
+  GlobalKey<ScaffoldState> scafoldKey = GlobalKey<ScaffoldState>();
 
   Rx<HomeModel> homeModelObj;
 
