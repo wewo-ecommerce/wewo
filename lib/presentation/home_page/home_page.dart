@@ -1,3 +1,5 @@
+import 'package:wewo/widgets/custom_drawer.dart';
+
 import 'controller/home_controller.dart';
 import 'models/home_model.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,70 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: controller.scafoldKey,
+        drawer: Drawer(
+          child: ListView(
+            children: [
+              const SizedBox(
+                height: 64,
+                child: DrawerHeader(
+                  margin: EdgeInsets.all(8.0),
+                  child: Text(
+                    "Cửa hàng",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              const Divider(
+                color: Colors.black,
+              ),
+              ListTile(
+                onTap: () {},
+                dense: true,
+                title: const Text(
+                  "Tạp hóa",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              ListTile(
+                onTap: () {},
+                dense: true,
+                title: const Text(
+                  "Gas",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              ListTile(
+                onTap: () {},
+                dense: true,
+                title: const Text(
+                  "Gạo + Ngũ cốc",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              ListTile(
+                onTap: () {},
+                dense: true,
+                title: const Text(
+                  "Thuốc tây",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
         backgroundColor: ColorConstant.gray50,
         body: Container(
           decoration: AppDecoration.fillGray50,
@@ -63,7 +129,7 @@ class HomePage extends StatelessWidget {
                                 ),
                                 child: Padding(
                                   padding: getPadding(
-                                    left: 17,
+                                    left: 4,
                                     right: 15,
                                   ),
                                   child: Row(
@@ -73,16 +139,28 @@ class HomePage extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Padding(
-                                        padding: getPadding(
-                                          top: 10,
-                                        ),
-                                        child: Text(
-                                          "lbl_grocery_plus".tr,
-                                          overflow: TextOverflow.ellipsis,
-                                          textAlign: TextAlign.left,
-                                          style: AppStyle.txtPoppinsSemiBold20,
-                                        ),
+                                      Row(
+                                        children: [
+                                          IconButton(
+                                            onPressed: () => controller
+                                                .scafoldKey.currentState
+                                                ?.openDrawer(),
+                                            icon: const Icon(Icons.store,
+                                                size: 32),
+                                          ),
+                                          Padding(
+                                            padding: getPadding(
+                                              top: 10,
+                                            ),
+                                            child: Text(
+                                              "lbl_grocery_plus".tr,
+                                              overflow: TextOverflow.ellipsis,
+                                              textAlign: TextAlign.left,
+                                              style:
+                                                  AppStyle.txtPoppinsSemiBold20,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                       Padding(
                                         padding: getPadding(
