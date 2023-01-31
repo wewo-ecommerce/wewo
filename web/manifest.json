@@ -1,11 +1,11 @@
 {
-    "name": "wewo",
-    "short_name": "wewo",
+    "name": "new_wewo",
+    "short_name": "new_wewo",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Đây là dự án cộng đồng",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

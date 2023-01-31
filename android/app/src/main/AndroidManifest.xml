@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.onei.wewo.wewo">
+    package="wewo.new_wewo">
    <application
-        android:label="wewo"
+        android:label="new_wewo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
