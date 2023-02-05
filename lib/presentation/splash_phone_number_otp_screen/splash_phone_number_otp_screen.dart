@@ -1,12 +1,11 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:wewo/presentation/splash_phone_number_screen/controller/info.dart';
 import 'controller/splash_phone_number_otp_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:wewo/core/app_export.dart';
 
 class SplashPhoneNumberOtpScreen extends GetWidget<SplashPhoneNumberOtpController> {
-  final String? phone;
-  final String? verId;
-  SplashPhoneNumberOtpScreen({super.key, this.phone, this.verId});
 
   final _phoneOTPctrl = Get.put(SplashPhoneNumberOtpController());
   String _otp = "";
@@ -26,38 +25,40 @@ class SplashPhoneNumberOtpScreen extends GetWidget<SplashPhoneNumberOtpControlle
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "Enter Verification Code",
+                "Vui lòng nhập mã xác thực",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
                 maxLines: 1,
               ),
               const SizedBox(height: 20),
               const Text(
-                "We have sent SMS to:",
+                "Chúng tôi đã gửi SMS đến số:",
                 style: TextStyle(fontSize: 20),
                 maxLines: 2,
               ),
               const SizedBox(height: 10),
               Text(
-                phone!,
+                Info.phone.value,
                 style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
                 maxLines: 1,
               ),
               const SizedBox(height: 30),
               _pinField(context),
-              // const SizedBox(height: 10),
-              // Obx(() {
-              //   _phoneOTPctrl.errOTP.value != "" ? return const Text(
-              //   "We have sent SMS to:",
-              //   style: TextStyle(fontSize: 20),
-              //   maxLines: 2,
-              // ) : SizedBox();
-              // }),
+              const SizedBox(height: 10),
+              Obx(
+                () {
+                  if(_phoneOTPctrl.errOtp.value != "") {
+                    return _errText("Đã có lỗi. Quý khách vui lòng kiểm tra lại");
+                  }else{
+                    return const SizedBox();
+                  }
+                }
+              ),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _textButton("Resend OTP", Colors.deepOrange, 0),
-                  _textButton("Change phone number", Colors.black, 1)
+                  _textButton("Gửi lại mã", Colors.deepOrange, 0),
+                  _textButton("Thay đổi số điện thoại", Colors.black, 1)
                 ],
               ),
               const SizedBox(height: 50),
@@ -89,6 +90,13 @@ class SplashPhoneNumberOtpScreen extends GetWidget<SplashPhoneNumberOtpControlle
     );
   }
 
+  Widget _errText(String err) {
+    return AutoSizeText(
+      err,
+      style: const TextStyle(fontSize: 17, color: Colors.red),
+    );
+  }
+
   Widget _button() {
     return SizedBox(
       width: double.infinity,
@@ -101,10 +109,10 @@ class SplashPhoneNumberOtpScreen extends GetWidget<SplashPhoneNumberOtpControlle
           ),
         ),
         onPressed: () {
-          _phoneOTPctrl.verifyOTPctrl(verId!, _otp);
+          _phoneOTPctrl.verifyOTPctrl(Info.verId.value, _otp);
         },
         child: const Text(
-          "Verify",
+          "Xác thực",
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w600,
@@ -120,7 +128,7 @@ class SplashPhoneNumberOtpScreen extends GetWidget<SplashPhoneNumberOtpControlle
     return TextButton(
       onPressed: () {
         if(index == 0) {
-          _phoneOTPctrl.resendOTP(phone!);
+          _phoneOTPctrl.resendOTPctrl(Info.phone.value);
         }else{
           _phoneOTPctrl.goBack();
         }

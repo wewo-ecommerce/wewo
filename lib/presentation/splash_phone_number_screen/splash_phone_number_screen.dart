@@ -1,4 +1,4 @@
-import 'package:wewo/presentation/splash_phone_number_otp_screen/splash_phone_number_otp_screen.dart';
+import 'package:wewo/presentation/splash_phone_number_screen/controller/info.dart';
 
 import 'controller/splash_phone_number_controller.dart';
 import 'package:flutter/material.dart';
@@ -24,13 +24,13 @@ class SplashPhoneNumberScreen extends GetWidget<SplashPhoneNumberController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "Enter your mobile number",
+                "Nhập số điện thoại của bạn",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
                 maxLines: 1,
               ),
               const SizedBox(height: 20),
               const Text(
-                "We need to verify you, We will send you a one time verification code",
+                "Chúng tôi cần xác minh bạn, Chúng tôi sẽ gửi cho bạn mã xác minh một lần",
                 style: TextStyle(fontSize: 20),
                 maxLines: 2,
               ),
@@ -60,10 +60,11 @@ class SplashPhoneNumberScreen extends GetWidget<SplashPhoneNumberController> {
           ),
         ),
         onPressed: () {
+          Info.phone.value = _textCtrl.text;
           _phoneNumberCtrl.phoneValiCtrl(_textCtrl.text);
         },
         child: const Text(
-          "Login",
+          "Đăng nhập",
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w600,
@@ -78,11 +79,12 @@ class SplashPhoneNumberScreen extends GetWidget<SplashPhoneNumberController> {
   Widget _textFiled(TextEditingController textEditingController, String err) {
     return TextField(
       controller: textEditingController,
+      keyboardType: TextInputType.phone,
       decoration: InputDecoration(
         focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
-        labelText: "Phone Number",
+        labelText: "Số điện thoại",
         errorText: err == "" ? null : err,
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),

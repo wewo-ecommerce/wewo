@@ -1,3 +1,4 @@
+
 import '/core/app_export.dart';
 import 'package:wewo/presentation/splash_phone_number_screen/models/splash_phone_number_model.dart';
 
@@ -13,12 +14,12 @@ class SplashPhoneNumberController extends GetxController {
   }
 
   phoneValiCtrl(String phone) {
-    splashPhoneNumberModelObj.value.phoneVali(phone);
-    err.value = splashPhoneNumberModelObj.value.getErr;
+    splashPhoneNumberModelObj.value.phoneVali(phone, err);
   }
 
   @override
   void onClose() {
     super.onClose();
+    print("close");
   }
 }

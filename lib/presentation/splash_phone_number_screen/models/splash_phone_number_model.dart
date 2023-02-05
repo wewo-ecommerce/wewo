@@ -1,27 +1,26 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:wewo/presentation/splash_phone_number_otp_screen/splash_phone_number_otp_screen.dart';
+import 'package:wewo/presentation/splash_phone_number_screen/controller/validator.dart';
+import 'package:wewo/routes/app_routes.dart';
+
+import '../controller/info.dart';
 
 class SplashPhoneNumberModel {
 
-  String _err = "";
-
-  String get getErr {
-    return _err;
-  }
-
-  bool _phoneCheck(String phone) {
-    if(phone.isEmpty) {
-      _err = "Vui lòng điền số điện thoại";
+  bool _phoneCheck(String phone, RxString err) {
+    if(Validators.fieldNull(phone)) {
+      err.value = "Vui lòng điền số điện thoại";
       return false;
-    }else{
-      final rexPhone = RegExp(r'^[0-9]{9}$');
-      if(!rexPhone.hasMatch(phone)) {
-        _err = "Số điện thoại không đúng";
-        return false;
-      }
     }
-    _err = "";
+
+    if(!Validators.phoneReal(phone)) {
+      err.value = "Số điện thoại không đúng";
+      return false;
+    }
+
+    if(err.value != "") {
+      err.value = "";
+    }
     return true;
   }
 
@@ -36,7 +35,8 @@ class SplashPhoneNumberModel {
         print("verification Failed");
       },
       codeSent: (String verificationId, int? resendToken) {
-        Get.to(SplashPhoneNumberOtpScreen(verId: verificationId, phone: '+84$phone'));
+        Info.verId.value = verificationId;
+        Get.toNamed(AppRoutes.splashPhoneNumberOtpScreen);
       },
       codeAutoRetrievalTimeout: (String verificationId) {
         print("odeAutoRetrievalTimeout");
@@ -44,9 +44,10 @@ class SplashPhoneNumberModel {
     );
   }
 
-  phoneVali(String phone) {
-    if(_phoneCheck(phone)) {
-      _verifyPhoneNumber(phone);
+  phoneVali(String phone, RxString err) {
+    if(_phoneCheck(phone, err)) {
+      String subPhone = phone.substring(1);
+      _verifyPhoneNumber(subPhone);
     }
   }
 }
