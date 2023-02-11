@@ -35,5 +35,20 @@ class AppTextStyle {
   );
 
   //Phần text add
-
+  static final TextStyle titleTextStyle = _textStyle.copyWith(
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
+  static final TextStyle mediumTextStyle = _textStyle.copyWith(
+    fontSize: 15,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle smallTextStyle = _textStyle.copyWith(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+  static final TextStyle largeBoldTextStyle = _textStyle.copyWith(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+  );
 }
