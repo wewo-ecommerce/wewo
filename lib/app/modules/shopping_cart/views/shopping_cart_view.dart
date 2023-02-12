@@ -59,7 +59,9 @@ class ShoppingCartView extends GetView<ShoppingCartController> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed(Routes.STORE_VIEW);
+        },
         child: const Icon(
           Icons.storefront_outlined,
           color: Colors.white,
