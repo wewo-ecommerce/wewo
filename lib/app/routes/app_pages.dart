@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:new_wewo/app/modules/shopping_cart/bindings/shopping_cart_binding.dart';
 import 'package:new_wewo/app/modules/shopping_cart/views/shopping_cart_view.dart';
+import 'package:new_wewo/app/modules/store_view/bindings/store_view_binding.dart';
+import 'package:new_wewo/app/modules/store_view/views/store_view.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
@@ -20,8 +22,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SHOPPING_CART,
-      page: () => ShoppingCartView(),
+      page: () => const ShoppingCartView(),
       binding: ShoppingCartBinding(),
+    ),
+    GetPage(
+      name: _Paths.STORE_VIEW,
+      page: () => const StoreView(),
+      binding: StoreViewBinding(),
     )
   ];
 }
