@@ -58,14 +58,30 @@ class ShoppingCartView extends GetView<ShoppingCartController> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.toNamed(Routes.STORE_VIEW);
-        },
-        child: const Icon(
-          Icons.storefront_outlined,
-          color: Colors.white,
-        ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          FloatingActionButton(
+            heroTag: 'fab1',
+            onPressed: () {
+              Get.toNamed(Routes.ORDER_HISTORY);
+            },
+            child: const Icon(
+              Icons.shopping_bag_rounded,
+              color: Colors.white,
+            ),
+          ),
+          FloatingActionButton(
+            heroTag: 'fab2',
+            onPressed: () {
+              Get.toNamed(Routes.STORE_VIEW);
+            },
+            child: const Icon(
+              Icons.storefront_outlined,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
       body: Column(
         children: [
