@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:new_wewo/app/common/values/styles/app_text_style.dart';
+import 'package:new_wewo/app/data/models/order_model.dart';
+import 'package:new_wewo/app/data/models/product_model.dart';
 import 'package:new_wewo/app/modules/order_history/controllers/order_history_controller.dart';
+import 'package:new_wewo/app/modules/order_history/views/widgets/order_history_item.dart';
 import 'package:new_wewo/app/modules/order_history/views/widgets/tab_bar_order.dart';
 
 class OrderHistoryView extends GetView<OrderHistoryController> {
@@ -37,7 +40,7 @@ class OrderHistoryView extends GetView<OrderHistoryController> {
           unselectedLabelStyle: AppTextStyle.normaltypeText,
           // indicator:
           //     CustomIndicatorDecoration(color: Colors.white.withOpacity(0.5)),
-          tabs: <Widget>[
+          tabs: const <Widget>[
             Tab(
               child: Text('All orders'),
             ),
@@ -55,10 +58,19 @@ class OrderHistoryView extends GetView<OrderHistoryController> {
   }
 
   Widget _buildBody() {
-    return const TabBarView(children: [
-      Center(
-        child: Text("WAITING"),
-      ),
+    return TabBarView(children: [
+      Obx(() => controller.orders.isEmpty
+          ? const Center(
+              child: Icon(Icons.remove_shopping_cart_rounded),
+            )
+          : ListView.builder(
+              //controller: controller,
+              itemCount: controller.orders.length,
+              itemBuilder: (context, index) {
+                final order = controller.orders[index];
+                return OrderHistoryItem(order: order);
+              },
+            )),
       Center(
         child: Text("WAITING"),
       ),

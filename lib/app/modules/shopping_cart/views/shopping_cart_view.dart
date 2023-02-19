@@ -48,6 +48,13 @@ class ShoppingCartView extends GetView<ShoppingCartController> {
         ),
         actions: <Widget>[
           IconButton(
+            onPressed: () => Get.toNamed(Routes.ORDER_HISTORY),
+            icon: Icon(
+              Icons.shopping_bag_rounded,
+              size: 20.sp,
+            ),
+          ),
+          IconButton(
             icon: Icon(
               Icons.home,
               size: 20.sp,
@@ -58,30 +65,14 @@ class ShoppingCartView extends GetView<ShoppingCartController> {
           ),
         ],
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          FloatingActionButton(
-            heroTag: 'fab1',
-            onPressed: () {
-              Get.toNamed(Routes.ORDER_HISTORY);
-            },
-            child: const Icon(
-              Icons.shopping_bag_rounded,
-              color: Colors.white,
-            ),
-          ),
-          FloatingActionButton(
-            heroTag: 'fab2',
-            onPressed: () {
-              Get.toNamed(Routes.STORE_VIEW);
-            },
-            child: const Icon(
-              Icons.storefront_outlined,
-              color: Colors.white,
-            ),
-          ),
-        ],
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.toNamed(Routes.STORE_VIEW);
+        },
+        child: const Icon(
+          Icons.storefront_outlined,
+          color: Colors.white,
+        ),
       ),
       body: Column(
         children: [
