@@ -41,11 +41,11 @@ class AppPages {
       binding: AddressBinding(),
       children: [
         GetPage(
-            name: '/create',
+            name: _Paths.CREATE,
             page: () => const AddressCreateScreen(),
         ),
         GetPage(
-            name: '/edit',
+            name: _Paths.ADDRESS_EDIT,
             page: () => const AddressEditScreen(),
         ),
       ]
