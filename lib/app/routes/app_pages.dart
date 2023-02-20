@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:new_wewo/app/modules/address/bindings/address_binding.dart';
-import 'package:new_wewo/app/modules/address/views/address_view.dart';
+import 'package:new_wewo/app/modules/address/views/address_create.dart';
+import 'package:new_wewo/app/modules/address/views/address_edit.dart';
+import 'package:new_wewo/app/modules/address/views/address_list.dart';
 import 'package:new_wewo/app/modules/shopping_cart/bindings/shopping_cart_binding.dart';
 import 'package:new_wewo/app/modules/shopping_cart/views/shopping_cart_view.dart';
 import 'package:new_wewo/app/modules/store_view/bindings/store_view_binding.dart';
@@ -8,6 +10,7 @@ import 'package:new_wewo/app/modules/store_view/views/store_view.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import 'app_parameters.dart';
 
 part 'app_routes.dart';
 
@@ -34,8 +37,19 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ADDRESS,
-      page: () => const AddressView(),
+      page: () => const AddressListScreen(),
       binding: AddressBinding(),
-    )
+      children: [
+        GetPage(
+            name: '/create',
+            page: () => const AddressCreateScreen(),
+        ),
+        GetPage(
+            name: '/edit',
+            page: () => const AddressEditScreen(),
+        ),
+      ]
+    ),
+
   ];
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_wewo/app/data/models/address_model.dart';
+import 'package:new_wewo/app/routes/app_pages.dart';
 
 class AddressCard extends StatefulWidget {
   final AddressModel address;
@@ -30,6 +31,7 @@ class _AddressCardState extends State<AddressCard> {
       onTap: () {},
       onTapDown: (_) => setCardClick.call(true),
       onTapUp: (_) => setCardClick.call(false),
+      onTapCancel: () => setCardClick.call(false),
       child: AnimatedContainer(
         duration: const Duration(microseconds: 500),
         decoration: BoxDecoration(
@@ -60,12 +62,12 @@ class _AddressCardState extends State<AddressCard> {
             Row(
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => Get.toNamed(Routes.ADDRESS_EDIT("0")),
                   child: const Text('Edit'),
                 ),
                 const SizedBox(width: 15),
                 IconButton(
-                    onPressed: () {},
+                   onPressed: (){},
                     icon: const Icon(Icons.delete_outline_outlined))
               ],
             )

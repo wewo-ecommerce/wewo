@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:new_wewo/app/data/models/address_model.dart';
 
-class AddressController extends GetxController {
+class AddressListController extends GetxController {
   RxList<AddressModel> addressList = <AddressModel>[].obs;
 
   @override
@@ -11,6 +11,7 @@ class AddressController extends GetxController {
     //Dummy data for test
     final List<AddressModel> dummyAddress = <AddressModel>[
       AddressModel(
+          id: '1',
           name: "Priscekila",
           address:
               "3711 Spring Hill Rd undefined Tallahassee, Nevada 52874 United States",
@@ -18,6 +19,7 @@ class AddressController extends GetxController {
           isDefault: true,
       ),
       AddressModel(
+        id: '2',
         name: "Ahmad Khaidir",
         address:
         "3711 Spring Hill Rd undefined Tallahassee, Nevada 52874 United States",
@@ -25,6 +27,7 @@ class AddressController extends GetxController {
         isDefault: true,
       ),
       AddressModel(
+        id: '3',
         name: "Ho Chi Minh",
         address:
         "3711 Spring Hill Rd undefined Tallahassee, Nevada 52874 United States",
