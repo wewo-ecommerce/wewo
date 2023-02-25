@@ -6,7 +6,8 @@ import 'package:new_wewo/app/modules/store_view/views/store_view.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/theme_example.dart';
+import '../modules/test_theme.dart';
+import 'app_parameters.dart';
 
 part 'app_routes.dart';
 
@@ -31,6 +32,20 @@ class AppPages {
       page: () => const StoreView(),
       binding: StoreViewBinding(),
     ),
+    GetPage(
+        name: _Paths.ADDRESS,
+        page: () => const AddressListScreen(),
+        binding: AddressBinding(),
+        children: [
+          GetPage(
+            name: _Paths.CREATE,
+            page: () => const AddressCreateScreen(),
+          ),
+          GetPage(
+            name: _Paths.ADDRESS_EDIT,
+            page: () => const AddressEditScreen(),
+          ),
+        ]),
     GetPage(name: '/theme', page: () => const TestThemePage()),
   ];
 }
