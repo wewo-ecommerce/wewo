@@ -34,7 +34,6 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           theme: LafyuuTheme.themeData,
-          //darkTheme: appTheme.darkTheme,
           defaultTransition: Transition.rightToLeftWithFade,
           initialRoute: AppPages.INITIAL,
           getPages: AppPages.routes,

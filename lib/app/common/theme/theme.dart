@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_wewo/app/common/theme/dimem.dart';
+import 'package:flutter/services.dart';
+import './dimem.dart';
 import './type.dart';
 import './color.dart';
 
@@ -17,17 +18,24 @@ class LafyuuTheme {
     cardColor: AppColors.white,
     dividerColor: AppColors.neutralLight,
     scaffoldBackgroundColor: AppColors.background,
-    dividerTheme: const DividerThemeData(color: AppColors.neutralLight, thickness: 1),
+    dividerTheme:
+        const DividerThemeData(color: AppColors.neutralLight, thickness: 1),
     appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.background,
       elevation: 0,
       toolbarHeight: AppDimen.toolBarHeight,
       actionsIconTheme: iconTheme,
       shape: Border(bottom: borderSide),
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      type: BottomNavigationBarType.fixed,
       selectedIconTheme: iconThemePrimary,
       unselectedIconTheme: iconTheme,
+      selectedLabelStyle:
+          appTextTheme.headlineSmall?.copyWith(color: AppColors.primary),
+      unselectedLabelStyle:
+          appTextTheme.headlineSmall?.copyWith(fontWeight: FontWeight.normal),
     ),
     inputDecorationTheme: InputDecorationTheme(
       iconColor: iconTheme.color,
@@ -70,10 +78,20 @@ class LafyuuTheme {
           appTextTheme.labelSmall?.copyWith(color: AppColors.neutralDark),
     ),
     sliderTheme: const SliderThemeData(
-      rangeThumbShape:RoundRangeSliderThumbShape(enabledThumbRadius: 10, elevation: 0,),
-      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 10,elevation: 0),
+      rangeThumbShape: RoundRangeSliderThumbShape(
+        enabledThumbRadius: 10,
+        elevation: 0,
+      ),
+      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 10, elevation: 0),
       inactiveTrackColor: AppColors.neutralLight,
       trackHeight: 4,
+    ),
+    listTileTheme: const ListTileThemeData(
+      iconColor: AppColors.primary,
+      minLeadingWidth: 20,
+      horizontalTitleGap: 20,
+      selectedTileColor: AppColors.primary,
+      textColor: AppColors.neutralDark
     ),
   );
 

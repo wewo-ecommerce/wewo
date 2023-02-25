@@ -6,7 +6,7 @@ import 'package:new_wewo/app/modules/store_view/views/store_view.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/test_theme.dart';
+import '../modules/theme_example.dart';
 
 part 'app_routes.dart';
 

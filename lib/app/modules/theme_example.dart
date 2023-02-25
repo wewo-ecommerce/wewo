@@ -175,6 +175,7 @@ class _SecondPageState extends State<SecondPage> {
             ),
             Divider(height: 30),
             Text('Other', style: context.textTheme.titleMedium),
+            ListTile(title: Text('List tile'),onTap: (){},leading: Icon(Icons.settings_outlined)),
             Slider(
                 value: slideVal,
                 onChanged: (val) {
