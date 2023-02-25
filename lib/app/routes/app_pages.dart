@@ -6,13 +6,14 @@ import 'package:new_wewo/app/modules/store_view/views/store_view.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/test_theme.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SHOPPING_CART;
+  static const INITIAL = '/theme';
 
   static final routes = [
     GetPage(
@@ -29,6 +30,7 @@ class AppPages {
       name: _Paths.STORE_VIEW,
       page: () => const StoreView(),
       binding: StoreViewBinding(),
-    )
+    ),
+    GetPage(name: '/theme', page: () => const TestThemePage()),
   ];
 }
