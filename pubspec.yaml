@@ -56,7 +56,3 @@ fonts:
       - asset: assets/fonts/Quicksand-Medium.ttf
       - asset: assets/fonts/Quicksand-Regular.ttf
       - asset: assets/fonts/Quicksand-SemiBold.ttf
-  - family: Poppins
-    fonts:
-      - asset: assets/fonts/poppins/Poppins-Bold.ttf
-      - asset: assets/fonts/poppins/Poppins-Regular.ttf

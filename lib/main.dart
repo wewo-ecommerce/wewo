@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
 
-import 'app/common/theme/theme.dart';
+import 'app/common/util/exports.dart';
 import 'app/common/util/initializer.dart';
 import 'app/routes/app_pages.dart';
 
@@ -33,8 +32,7 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          theme: LafyuuTheme.themeData,
-          //darkTheme: appTheme.darkTheme,
+          theme: AppTheme.theme,
           defaultTransition: Transition.rightToLeftWithFade,
           initialRoute: AppPages.INITIAL,
           getPages: AppPages.routes,
