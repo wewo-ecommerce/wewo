@@ -4,9 +4,13 @@ import 'package:new_wewo/app/modules/shopping_cart/views/shopping_cart_view.dart
 import 'package:new_wewo/app/modules/store_view/bindings/store_view_binding.dart';
 import 'package:new_wewo/app/modules/store_view/views/store_view.dart';
 
+import '../modules/address/bindings/address_binding.dart';
+import '../modules/address/views/address_create.dart';
+import '../modules/address/views/address_edit.dart';
+import '../modules/address/views/address_list.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/test_theme.dart';
+import '../modules/theme_example.dart';
 import 'app_parameters.dart';
 
 part 'app_routes.dart';
