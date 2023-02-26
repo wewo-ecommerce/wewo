@@ -1,8 +1,4 @@
 import 'package:get/get.dart';
-import 'package:new_wewo/app/modules/address/bindings/address_binding.dart';
-import 'package:new_wewo/app/modules/address/views/address_create.dart';
-import 'package:new_wewo/app/modules/address/views/address_edit.dart';
-import 'package:new_wewo/app/modules/address/views/address_list.dart';
 import 'package:new_wewo/app/modules/auth/bindings/auth_binding.dart';
 import 'package:new_wewo/app/modules/auth/bindings/otp_binding.dart';
 import 'package:new_wewo/app/modules/auth/bindings/register_binding.dart';
@@ -14,8 +10,13 @@ import 'package:new_wewo/app/modules/shopping_cart/views/shopping_cart_view.dart
 import 'package:new_wewo/app/modules/store_view/bindings/store_view_binding.dart';
 import 'package:new_wewo/app/modules/store_view/views/store_view.dart';
 
+import '../modules/address/bindings/address_binding.dart';
+import '../modules/address/views/address_create.dart';
+import '../modules/address/views/address_edit.dart';
+import '../modules/address/views/address_list.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/theme_example.dart';
 import 'app_parameters.dart';
 
 part 'app_routes.dart';
@@ -70,6 +71,7 @@ class AppPages {
             page: () => const OtpView(),
             binding: OtpBinding(),
           ),
+          GetPage(name: '/theme', page: () => const TestThemePage()),
         ]),
   ];
 }
