@@ -7,9 +7,15 @@ abstract class Routes {
   static const SHOPPING_CART = _Paths.SHOPPING_CART;
   static const STORE_VIEW = _Paths.STORE_VIEW;
   static const ADDRESS = _Paths.ADDRESS;
+
+  //Auth
+  static const LOGIN = _Paths.LOGIN;
+  static const REGISTER = '$LOGIN${_Paths.REGISTER}';
+  static const OTP = '$LOGIN${_Paths.OTP}';
   //Address
   static const ADDRESS_CREATE = "$ADDRESS${_Paths.CREATE}";
-  static String ADDRESS_EDIT(String addressID) => "$ADDRESS${_Paths.EDIT}/${Parameters.addressID}";
+  static String ADDRESS_EDIT(String addressID) =>
+      "$ADDRESS${_Paths.EDIT}/${Parameters.addressID}";
 }
 
 abstract class _Paths {
@@ -22,6 +28,11 @@ abstract class _Paths {
   static const HOME = '/home';
   static const SHOPPING_CART = '/shopping_cart';
   static const STORE_VIEW = '/store_view';
+  //Login
+  static const LOGIN = '/login';
+  static const REGISTER = '/register';
+  static const OTP = '/otp';
+
   //Address
   static const ADDRESS = '/address';
   static const ADDRESS_EDIT = '/:${Parameters.addressID}';

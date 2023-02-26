@@ -121,7 +121,7 @@ class StoreViewController extends GetxController {
   }
 
   void fetchAllStore() {
-    StoreUserCase().fetchAllStore().then((value) {
+    StoreUseCase().fetchAllStore().then((value) {
       stores.addAll(value);
     });
   }
