@@ -9,6 +9,15 @@ class Constants {
   static const String tokenSocket = 'tokenSocket';
   static const String finvi = 'finvi';
 
+  static const String offer= 'Offer';
+
+  //svg picture
+  static const String offerNotification = 'assets/images/offer.svg';
+  static const String feedNotification = 'assets/images/feedNoti.svg';
+  static const String feed = 'assets/images/feed.svg';
+  static const String activity = 'assets/images/activity.svg';
+  static const String activityNotification = 'assets/images/activityNoti.svg';
+
   static const String dummyImageUrl =
       'https://i.picsum.photos/id/1084/536/354.jpg'
       '?grayscale&hmac=Ux7nzg19e1q35mlUVZjhCLxqkR30cC-CarVg-nlIf60';
