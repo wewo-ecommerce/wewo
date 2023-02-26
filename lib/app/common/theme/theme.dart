@@ -40,7 +40,7 @@ class LafyuuTheme {
     inputDecorationTheme: InputDecorationTheme(
       iconColor: iconTheme.color,
       hintStyle: appTextTheme.bodySmall?.copyWith(color: AppColors.neutralGrey),
-      errorStyle: appTextTheme.labelLarge,
+      errorStyle: appTextTheme.labelLarge?.copyWith(color: AppColors.primaryRed),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       outlineBorder: inputBorder.borderSide,
       border: inputBorder,
