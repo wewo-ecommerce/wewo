@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 
+import 'app/common/theme/layyuu_theme/theme.dart';
 import 'app/common/util/exports.dart';
 import 'app/common/util/initializer.dart';
 import 'app/routes/app_pages.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          theme: AppTheme.theme,
+          theme: LafyuuTheme.themeData,
           defaultTransition: Transition.rightToLeftWithFade,
           initialRoute: AppPages.INITIAL,
           getPages: AppPages.routes,
