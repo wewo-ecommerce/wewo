@@ -1,0 +1,100 @@
+{
+  "project_info": {
+    "project_number": "532846176045",
+    "project_id": "wewo-829c1",
+    "storage_bucket": "wewo-829c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532846176045:android:1d48bafe541eb55b0195a4",
+        "android_client_info": {
+          "package_name": "com.onei.wewo.wewo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "532846176045-2r465dke57hfemdkm3al3do4rvlsrdss.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.onei.wewo.wewo",
+            "certificate_hash": "ce0f1fa4c8863c06bedcbc5b5a7400596c3d8f42"
+          }
+        },
+        {
+          "client_id": "532846176045-3f8m64nmfsjl4cbicu95ihuomihmil5f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.onei.wewo.wewo",
+            "certificate_hash": "280e895b7094b32f1f43d97e4d60750925e1be3c"
+          }
+        },
+        {
+          "client_id": "532846176045-gno28tk6eieppf5e1hluvri7ngsnir8n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.onei.wewo.wewo",
+            "certificate_hash": "cdfdd628a61870fa9a24607f496654c51e2bce8c"
+          }
+        },
+        {
+          "client_id": "532846176045-op61kngh80ne12enr0n0m8had8hglbf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgp7trkJ6X60IjmIhI-MmYcNiccy4abn4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "532846176045-op61kngh80ne12enr0n0m8had8hglbf6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532846176045:android:17721946f6970af10195a4",
+        "android_client_info": {
+          "package_name": "wewo.new_wewo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "532846176045-cfkrjbqrt3sqfev2r6uk13pc3ma2j72r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "wewo.new_wewo",
+            "certificate_hash": "d1effbc90ffa6f86a3b960f866686e7a936fb018"
+          }
+        },
+        {
+          "client_id": "532846176045-op61kngh80ne12enr0n0m8had8hglbf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgp7trkJ6X60IjmIhI-MmYcNiccy4abn4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "532846176045-op61kngh80ne12enr0n0m8had8hglbf6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
