@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
 
 import 'app/common/theme/layyuu_theme/theme.dart';
 import 'app/common/util/initializer.dart';
