@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './color.dart';
+import 'color.dart';
 
 const appFontFamily = 'font';
 
