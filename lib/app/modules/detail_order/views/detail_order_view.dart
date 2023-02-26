@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:new_wewo/app/common/util/exports.dart';
+import 'package:new_wewo/app/modules/detail_order/controllers/detail_order_controller.dart';
 
-class DetailOrderView extends StatefulWidget {
+class DetailOrderView extends GetView<DetailOrderController> {
   const DetailOrderView({super.key});
 
   @override
-  State<DetailOrderView> createState() => _DetailOrderViewState();
-}
-
-class _DetailOrderViewState extends State<DetailOrderView> {
-  @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
-      child: Scaffold(
-        body: _buildBody(context),
-        bottomNavigationBar: _buildBottom(context),
+    return Scaffold(
+      appBar: _buildAppBar(context),
+      body: _buildBody(context),
+      bottomNavigationBar: _buildBottom(context),
+    );
+  }
+
+  PreferredSizeWidget _buildAppBar(BuildContext context) {
+    return AppBar(
+      title: Text(
+        'Detail Order',
+        style: AppTextStyle.titleTextStyle.copyWith(color: Colors.white),
       ),
+      centerTitle: true,
     );
   }
 
@@ -25,36 +30,27 @@ class _DetailOrderViewState extends State<DetailOrderView> {
     return ListView.builder(
       padding: const EdgeInsets.symmetric(vertical: 10),
       shrinkWrap: true,
-      itemCount: 6,
+      itemCount: 5,
       itemBuilder: (context, index) {
-        if (index == 0) {
-          return Align(
-            alignment: Alignment.center,
-            child: Text(
-              'Detail Order',
-              style: AppTextStyle.semiBoldtypeText,
-            ),
-          );
-        }
-        return ExpansionTile(
+        return ListTile(
           title: Text(
-            'Order ${index + 1}',
+            'Order ${index}',
             style: AppTextStyle.semiBoldtypeText,
           ),
-          trailing: Text(
-            '\$ ${100}',
-            style: AppTextStyle.semiBoldtypeText,
-          ),
-          children: const [
-            ListTile(
-              title: Text('Amount'),
-              trailing: Text('5'),
+          trailing: FractionallySizedBox(
+            widthFactor: 0.5,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('2'),
+                const Text('\$25'),
+                Text(
+                  '\$ ${100}',
+                  style: AppTextStyle.semiBoldtypeText,
+                ),
+              ],
             ),
-            ListTile(
-              title: Text('Discount'),
-              trailing: Text('5%'),
-            )
-          ],
+          ),
         );
       },
     );
@@ -62,7 +58,7 @@ class _DetailOrderViewState extends State<DetailOrderView> {
 
   Widget _buildBottom(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -71,7 +67,7 @@ class _DetailOrderViewState extends State<DetailOrderView> {
             style: AppTextStyle.semiBoldtypeText,
           ),
           const CircleAvatar(
-            child: Text('9'),
+            child: Text('10'),
           ),
           Text(
             '\$ 500',

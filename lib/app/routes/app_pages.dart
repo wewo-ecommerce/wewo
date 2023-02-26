@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:new_wewo/app/modules/detail_order/bindings/detail_order_bindings.dart';
+import 'package:new_wewo/app/modules/detail_order/views/detail_order_view.dart';
 import 'package:new_wewo/app/modules/order_history/bindings/order_history_binding.dart';
 import 'package:new_wewo/app/modules/order_history/views/order_history_view.dart';
 import 'package:new_wewo/app/modules/shopping_cart/bindings/shopping_cart_binding.dart';
@@ -36,6 +38,10 @@ class AppPages {
       name: _Paths.ORDER_HISTORY,
       page: () => const OrderHistoryView(),
       binding: OrderHistoryBinding(),
-    )
+    ),
+    GetPage(
+        name: _Paths.DETAIL_ORDER,
+        page: () => const DetailOrderView(),
+        binding: DetailOrderBinding())
   ];
 }

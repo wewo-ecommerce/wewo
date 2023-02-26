@@ -34,12 +34,9 @@ class OrderHistoryView extends GetView<OrderHistoryController> {
       ),
       bottom: TabBar(
           isScrollable: true,
-          // labelColor: Colors.black,
           indicatorSize: TabBarIndicatorSize.label,
           labelStyle: AppTextStyle.semiBoldtypeText,
           unselectedLabelStyle: AppTextStyle.normaltypeText,
-          // indicator:
-          //     CustomIndicatorDecoration(color: Colors.white.withOpacity(0.5)),
           tabs: const <Widget>[
             Tab(
               child: Text('All orders'),
@@ -71,13 +68,13 @@ class OrderHistoryView extends GetView<OrderHistoryController> {
                 return OrderHistoryItem(order: order);
               },
             )),
-      Center(
+      const Center(
         child: Text("WAITING"),
       ),
-      Center(
+      const Center(
         child: Text("WAITING"),
       ),
-      Center(
+      const Center(
         child: Text("WAITING"),
       ),
     ]);

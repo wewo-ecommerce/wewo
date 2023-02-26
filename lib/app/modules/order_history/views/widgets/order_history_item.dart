@@ -1,12 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
+import 'package:get/get.dart';
 import 'package:new_wewo/app/common/util/exports.dart';
 import 'package:new_wewo/app/data/models/order_model.dart';
 import 'package:new_wewo/app/modules/detail_order/views/detail_order_view.dart';
 import 'package:new_wewo/app/modules/order_history/views/widgets/detail_order.dart';
+import 'package:new_wewo/app/routes/app_pages.dart';
 
 class OrderHistoryItem extends StatelessWidget {
   final Order order;
@@ -17,15 +18,7 @@ class OrderHistoryItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: ListTile(
-        onTap: () async => await showModalBottomSheet(
-          context: context,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(15.0)),
-          ),
-          builder: (context) {
-            return DetailOrderView();
-          },
-        ),
+        onTap: () => Get.toNamed(Routes.DETAIL_ORDER),
         key: ValueKey(order),
         shape: const Border.symmetric(
             horizontal: BorderSide(width: 2, color: Color(0xffeeeeee))),
