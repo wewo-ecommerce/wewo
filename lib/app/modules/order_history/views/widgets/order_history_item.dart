@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:new_wewo/app/common/util/exports.dart';
 import 'package:new_wewo/app/data/models/order_model.dart';
+import 'package:new_wewo/app/modules/detail_order/views/detail_order_view.dart';
 import 'package:new_wewo/app/modules/order_history/views/widgets/detail_order.dart';
 
 class OrderHistoryItem extends StatelessWidget {
@@ -18,12 +19,11 @@ class OrderHistoryItem extends StatelessWidget {
       child: ListTile(
         onTap: () async => await showModalBottomSheet(
           context: context,
-          isScrollControlled: true,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(15.0)),
           ),
           builder: (context) {
-            return const DetailOrder();
+            return DetailOrderView();
           },
         ),
         key: ValueKey(order),
