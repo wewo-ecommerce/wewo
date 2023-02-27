@@ -31,17 +31,6 @@ class NotificationTypeItem extends StatelessWidget {
           onTap: () => Get.back(),
           child: Icon(Icons.arrow_back_outlined, size: 20.sp),
         ),
-        /*actions: [
-          IconButton(
-            icon: const Icon(Icons.home),
-            onPressed: () {
-             *//* Get.bottomSheet(
-                const BottomSheetNotification(),
-                isScrollControlled: true,
-              );*//*
-            },
-          ),
-        ],*/
       ),
       body: SizedBox(
         //height: 32.h,

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:new_wewo/app/data/models/notification_model.dart';
 
-import '../../../common/util/exports.dart';
+import '../../../common/util/asset_images.dart';
 import '../../../data/models/notification_item_model.dart';
 
 class NotificationViewController extends GetxController {
@@ -16,74 +16,74 @@ class NotificationViewController extends GetxController {
         NotificationModel(
             id: 1,
             type: "Offer",
-            imageUrl: Constants.offerNotification,
+            imageUrl: AssetImages.offerNotification,
             notifications: <NotificationItem>[
               NotificationItem(
                   id: 1,
                   title: "The Best",
                   description:
                       "Is the best itemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
-                  imageUrl: Constants.offerNotification,
+                  imageUrl: AssetImages.offerNotification,
                   createdAt: "25/02/2022"),
               NotificationItem(
                   id: 2,
                   title: "The Best 1",
                   description: "Is the best itemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
-                  imageUrl: Constants.offerNotification,
+                  imageUrl: AssetImages.offerNotification,
                   createdAt: "25/02/2022"),
               NotificationItem(
                   id: 3,
                   title: "The Best 2",
                   description: "Is the best itemmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm",
-                  imageUrl: Constants.offerNotification,
+                  imageUrl: AssetImages.offerNotification,
                   createdAt: "25/02/2022")
             ]),
         NotificationModel(
             id: 2,
             type: "Feed",
-            imageUrl: Constants.feed,
+            imageUrl: AssetImages.feed,
             notifications: <NotificationItem>[
               NotificationItem(
                   id: 1,
                   title: "The Feed 1",
                   description: "Is the best item",
-                  imageUrl: Constants.feed,
+                  imageUrl: AssetImages.feed,
                   createdAt: "25/02/2022"),
               NotificationItem(
                   id: 2,
                   title: "The Feed 2",
                   description: "Is the best item",
-                  imageUrl: Constants.feed,
+                  imageUrl: AssetImages.feed,
                   createdAt: "25/02/2022"),
               NotificationItem(
                   id: 3,
                   title: "The Feed 3",
                   description: "Is the best item",
-                  imageUrl: Constants.feed,
+                  imageUrl: AssetImages.feed,
                   createdAt: "25/02/2022")
             ]),
         NotificationModel(
             id: 3,
             type: "Activity",
-            imageUrl: Constants.activity,
+            imageUrl: AssetImages.activity,
             notifications: <NotificationItem>[
               NotificationItem(
                   id: 1,
                   title: "The Activity 1",
                   description: "Is the best item",
-                  imageUrl: Constants.activityNotification,
+                  imageUrl: AssetImages.activityNotification,
                   createdAt: "25/02/2022"),
               NotificationItem(
                   id: 2,
                   title: "The Activity 2",
                   description: "Is the best item",
-                  imageUrl: Constants.activityNotification,
+                  imageUrl: AssetImages.activityNotification,
                   createdAt: "25/02/2022"),
               NotificationItem(
                   id: 3,
                   title: "The Activity 3",
                   description: "Is the best item",
-                  imageUrl: Constants.activityNotification,
+                  imageUrl: AssetImages.activityNotification,
                   createdAt: "25/02/2022")
             ]),
       ],
