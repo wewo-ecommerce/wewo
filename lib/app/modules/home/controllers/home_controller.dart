@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
-
   final count = 0.obs;
+
+  final currentPage = 0.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -20,4 +21,8 @@ class HomeController extends GetxController {
   }
 
   void increment() => count.value++;
+
+  void updateMenuPage({required int pageIndex}){
+    currentPage.value = pageIndex;
+  }
 }
