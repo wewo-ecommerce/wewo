@@ -60,8 +60,7 @@ class OrderHistoryView extends GetView<OrderHistoryController> {
           ? const Center(
               child: Icon(Icons.remove_shopping_cart_rounded),
             )
-          : ListView.builder(
-              //controller: controller,
+          : ListView.builder(  
               itemCount: controller.orders.length,
               itemBuilder: (context, index) {
                 final order = controller.orders[index];
