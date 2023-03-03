@@ -63,6 +63,15 @@ class ShoppingCartView extends GetView<ShoppingCartController> {
               Get.offAllNamed(Routes.HOME);
             },
           ),
+          IconButton(
+            icon: Icon(
+              Icons.notifications_none_outlined,
+              size: 20.sp,
+            ),
+            onPressed: () {
+              Get.toNamed(Routes.NOTIFICATION);
+            },
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(

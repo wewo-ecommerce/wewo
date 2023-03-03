@@ -8,10 +8,12 @@ abstract class Routes {
   static const STORE_VIEW = _Paths.STORE_VIEW;
   static const ORDER_HISTORY = _Paths.ORDER_HISTORY;
   static const DETAIL_ORDER = _Paths.DETAIL_ORDER;
+  static const NOTIFICATION = _Paths.NOTIFICATION;
   static const ADDRESS = _Paths.ADDRESS;
   //Address
   static const ADDRESS_CREATE = "$ADDRESS${_Paths.CREATE}";
-  static String ADDRESS_EDIT(String addressID) => "$ADDRESS${_Paths.EDIT}/${Parameters.addressID}";
+  static String ADDRESS_EDIT(String addressID) =>
+      "$ADDRESS${_Paths.EDIT}/${Parameters.addressID}";
 }
 
 abstract class _Paths {
@@ -26,6 +28,7 @@ abstract class _Paths {
   static const STORE_VIEW = '/store_view';
   static const ORDER_HISTORY = '/order_history';
   static const DETAIL_ORDER = '/detail_order';
+  static const NOTIFICATION = '/notification';
   //Address
   static const ADDRESS = '/address';
   static const ADDRESS_EDIT = '/:${Parameters.addressID}';
