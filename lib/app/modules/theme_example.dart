@@ -1,5 +1,12 @@
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoder/geocoder.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class TestThemePage extends StatefulWidget {
   const TestThemePage({Key? key}) : super(key: key);
@@ -13,10 +20,73 @@ class _TestThemePageState extends State<TestThemePage> {
 
   List<Widget> pages = [SecondPage(),Placeholder(),Placeholder(),Placeholder(),Placeholder(),];
 
+  var latitude = '';
+  var longitude = '';
+  var address = '';
+
+  late StreamSubscription<Position> streamSubscription;
+
+
   void changePage(int index) {
     setState(() {
       currentPage = index;
     });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    getLocation();
+    if (kDebugMode) {
+      print('Latitude: $latitude');
+      print('Longitude: $longitude');
+      print('Address: $address');
+    }
+    super.initState();
+  }
+
+  getLocation() async {
+    bool enabledServices;
+
+    LocationPermission locationPermission;
+
+    enabledServices = await Geolocator.isLocationServiceEnabled();
+    if(!enabledServices){
+        await Geolocator.openLocationSettings();
+        return Future.error('Vui lòng cho phép quyền mở vị trí');
+    }
+     locationPermission = await Geolocator.checkPermission();
+      if(locationPermission == LocationPermission.denied){
+        locationPermission = await Geolocator.requestPermission();
+
+        if(locationPermission == LocationPermission.denied){
+          return Future.error('Quyền vị trí đã bị từ chối');
+        }
+      }
+      if(locationPermission == LocationPermission.deniedForever){
+        return Future.error('Quyền vị trí đã bị từ chối vĩnh viễn');
+      }
+
+      streamSubscription = Geolocator.getPositionStream().listen((Position position) {
+
+        latitude = 'Latitude: ${position.latitude}';
+        longitude = 'Longitude: ${position.longitude}';
+        getAddressPosition(position);
+
+      });
+  }
+
+  Future<void> getAddressPosition(Position position) async {
+    List<Placemark> placemark = await placemarkFromCoordinates(position.latitude, position.longitude);
+    Placemark place = placemark[0];
+
+    position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+
+    final coordinates = Coordinates(position.latitude, position.longitude);
+    var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    var first = addresses.first;
+    //print("${first.featureName} : ${first.addressLine}");
+
+    address = 'Address: ${first.addressLine}';
   }
 
   @override
@@ -39,6 +109,15 @@ class _TestThemePageState extends State<TestThemePage> {
               Icons.filter_alt_outlined,
               color: context.theme.colorScheme.primary,
             ),
+          ),
+          IconButton(
+            onPressed: () {
+              getLocation();
+              print('$latitude');
+              print('$longitude');
+              print('$address');
+            },
+            icon: Icon(Icons.location_on_outlined),
           ),
         ],
       ),
