@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../modules/account/views/account_view.dart';
 
 class TestThemePage extends StatefulWidget {
   const TestThemePage({Key? key}) : super(key: key);
@@ -11,7 +12,13 @@ class TestThemePage extends StatefulWidget {
 class _TestThemePageState extends State<TestThemePage> {
   int currentPage = 0;
 
-  List<Widget> pages = [SecondPage(),Placeholder(),Placeholder(),Placeholder(),Placeholder(),];
+  List<Widget> pages = [
+    SecondPage(),
+    Placeholder(),
+    Placeholder(),
+    Placeholder(),
+    AccountView(),
+  ];
 
   void changePage(int index) {
     setState(() {
@@ -175,7 +182,10 @@ class _SecondPageState extends State<SecondPage> {
             ),
             Divider(height: 30),
             Text('Other', style: context.textTheme.titleMedium),
-            ListTile(title: Text('List tile'),onTap: (){},leading: Icon(Icons.settings_outlined)),
+            ListTile(
+                title: Text('List tile'),
+                onTap: () {},
+                leading: Icon(Icons.settings_outlined)),
             Slider(
                 value: slideVal,
                 onChanged: (val) {

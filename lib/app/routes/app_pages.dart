@@ -48,20 +48,19 @@ class AppPages {
       binding: NotificationViewBinding(),
     ),
     GetPage(
-      name: _Paths.ADDRESS,
-      page: () => const AddressListScreen(),
-      binding: AddressBinding(),
-      children: [
-        GetPage(
+        name: _Paths.ADDRESS,
+        page: () => const AddressListScreen(),
+        binding: AddressBinding(),
+        children: [
+          GetPage(
             name: _Paths.CREATE,
             page: () => const AddressCreateScreen(),
-        ),
-        GetPage(
+          ),
+          GetPage(
             name: _Paths.ADDRESS_EDIT,
             page: () => const AddressEditScreen(),
-        ),
-      ]
-    ),
+          ),
+        ]),
     GetPage(name: '/theme', page: () => const TestThemePage()),
   ];
 }
