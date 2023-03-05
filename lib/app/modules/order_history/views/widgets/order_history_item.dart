@@ -1,13 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
-
+import 'package:new_wewo/app/common/theme/layyuu_theme/color.dart' as color;
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
-import 'package:new_wewo/app/common/util/exports.dart';
+import 'package:new_wewo/app/common/theme/layyuu_theme/type.dart';
+
 import 'package:new_wewo/app/data/models/order_model.dart';
-import 'package:new_wewo/app/modules/detail_order/views/detail_order_view.dart';
-import 'package:new_wewo/app/modules/order_history/views/widgets/detail_order.dart';
-import 'package:new_wewo/app/routes/app_pages.dart';
+
+import 'package:new_wewo/app/modules/detail_order/views/widget/dotted_divider.dart';
 
 class OrderHistoryItem extends StatelessWidget {
   final Order order;
@@ -15,7 +13,63 @@ class OrderHistoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return _buildItem();
+  }
+
+  Widget _buildItem() {
+    return AnimatedContainer(
+      duration: const Duration(microseconds: 500),
+      decoration: BoxDecoration(
+          border: Border.all(color: color.AppColors.neutralGrey),
+          borderRadius: BorderRadius.circular(10)),
+      padding: const EdgeInsets.all(5),
+      margin: const EdgeInsets.all(10),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const ListTile(
+            title: Text(
+              'LQNSU346JK',
+            ),
+            subtitle: Text('Order at Lafyuu : August 1,2017'),
+          ),
+          CustomPaint(
+            painter: DottedHorizontal(),
+          ),
+          ListTile(
+            title: const Text(
+              'Order status',
+            ),
+            trailing: Text(order.status),
+            minVerticalPadding: 0,
+          ),
+          ListTile(
+            title: const Text(
+              'Items',
+            ),
+            trailing: Text('${order.items.length} Items purchased'),
+            minVerticalPadding: 0,
+          ),
+          ListTile(
+            title: const Text('Price'),
+            trailing: Text(
+              '\$766.86',
+              style:
+                  appTextTheme.displaySmall!.copyWith(color: Colors.blueAccent),
+            ),
+            minVerticalPadding: 0,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+///Just Example and use later
+///Dont delete
+/*
+Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: ListTile(
         onTap: () => Get.toNamed(Routes.DETAIL_ORDER),
@@ -108,5 +162,5 @@ class OrderHistoryItem extends StatelessWidget {
         ),
       ),
     );
-  }
-}
+
+*/
