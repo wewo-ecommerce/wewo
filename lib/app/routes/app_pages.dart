@@ -28,8 +28,8 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = '/theme';
-
+  //static const INITIAL = '/theme';
+  static const INITIAL = _Paths.SHOPPING_CART;
   static final routes = [
     GetPage(
       name: _Paths.HOME,

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:get/get.dart';
-import 'package:new_wewo/app/common/values/styles/app_text_style.dart';
-import 'package:new_wewo/app/data/models/order_model.dart';
-import 'package:new_wewo/app/data/models/product_model.dart';
+
+import 'package:new_wewo/app/common/theme/layyuu_theme/type.dart';
 import 'package:new_wewo/app/modules/order_history/controllers/order_history_controller.dart';
 import 'package:new_wewo/app/modules/order_history/views/widgets/order_history_item.dart';
-import 'package:new_wewo/app/modules/order_history/views/widgets/tab_bar_order.dart';
+
+import 'package:new_wewo/app/common/theme/layyuu_theme/color.dart' as color;
 
 class OrderHistoryView extends GetView<OrderHistoryController> {
   const OrderHistoryView({super.key});
@@ -25,18 +25,19 @@ class OrderHistoryView extends GetView<OrderHistoryController> {
 
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
-      centerTitle: true,
-      title: Text(
-        'Order History',
-        style: AppTextStyle.titleTextStyle.copyWith(
-          color: Colors.white,
-        ),
-      ),
+      title: Text('Order', style: appTextTheme.titleLarge!),
+      leading: IconButton(
+          onPressed: () => Get.back(),
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: color.AppColors.neutralGrey,
+          )),
       bottom: TabBar(
           isScrollable: true,
           indicatorSize: TabBarIndicatorSize.label,
-          labelStyle: AppTextStyle.semiBoldtypeText,
-          unselectedLabelStyle: AppTextStyle.normaltypeText,
+          labelStyle:
+              appTextTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w700),
+          unselectedLabelStyle: appTextTheme.bodyLarge,
           tabs: const <Widget>[
             Tab(
               child: Text('All orders'),
@@ -60,11 +61,13 @@ class OrderHistoryView extends GetView<OrderHistoryController> {
           ? const Center(
               child: Icon(Icons.remove_shopping_cart_rounded),
             )
-          : ListView.builder(  
+          : ListView.builder(
               itemCount: controller.orders.length,
               itemBuilder: (context, index) {
                 final order = controller.orders[index];
-                return OrderHistoryItem(order: order);
+                return OrderHistoryItem(
+                    order: order,
+                    total: controller.totalEachCart(controller.orders, index));
               },
             )),
       const Center(

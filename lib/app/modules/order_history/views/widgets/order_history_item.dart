@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:new_wewo/app/common/theme/layyuu_theme/color.dart' as color;
 import 'package:flutter/material.dart';
 
@@ -6,10 +7,12 @@ import 'package:new_wewo/app/common/theme/layyuu_theme/type.dart';
 import 'package:new_wewo/app/data/models/order_model.dart';
 
 import 'package:new_wewo/app/modules/detail_order/views/widget/dotted_divider.dart';
+import 'package:new_wewo/app/routes/app_pages.dart';
 
 class OrderHistoryItem extends StatelessWidget {
   final Order order;
-  const OrderHistoryItem({super.key, required this.order});
+  final double total;
+  const OrderHistoryItem({super.key, required this.order, required this.total});
 
   @override
   Widget build(BuildContext context) {
@@ -17,49 +20,74 @@ class OrderHistoryItem extends StatelessWidget {
   }
 
   Widget _buildItem() {
-    return AnimatedContainer(
-      duration: const Duration(microseconds: 500),
-      decoration: BoxDecoration(
-          border: Border.all(color: color.AppColors.neutralGrey),
-          borderRadius: BorderRadius.circular(10)),
-      padding: const EdgeInsets.all(5),
-      margin: const EdgeInsets.all(10),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const ListTile(
-            title: Text(
-              'LQNSU346JK',
-            ),
-            subtitle: Text('Order at Lafyuu : August 1,2017'),
+    return Material(
+      child: InkWell(
+        onTap: () => Get.toNamed(Routes.DETAIL_ORDER),
+        child: AnimatedContainer(
+          duration: const Duration(microseconds: 500),
+          decoration: BoxDecoration(
+              border: Border.all(color: color.AppColors.neutralGrey),
+              borderRadius: BorderRadius.circular(10)),
+          padding: const EdgeInsets.all(5),
+          margin: const EdgeInsets.all(10),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: Text(
+                  order.code,
+                  style: appTextTheme.titleMedium!
+                      .copyWith(fontWeight: FontWeight.w700),
+                ),
+                subtitle: Text(
+                  'Order at Lafyuu : August 1,2017',
+                  style: appTextTheme.titleMedium!
+                      .copyWith(fontWeight: FontWeight.w400),
+                ),
+              ),
+              CustomPaint(
+                painter: DottedHorizontal(),
+              ),
+              ListTile(
+                title: Text(
+                  'Order Status',
+                  style: appTextTheme.titleMedium!
+                      .copyWith(fontWeight: FontWeight.w400),
+                ),
+                trailing: Text(
+                  order.status,
+                  style: appTextTheme.titleMedium!
+                      .copyWith(fontWeight: FontWeight.w400),
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  'Items',
+                  style: appTextTheme.titleMedium!
+                      .copyWith(fontWeight: FontWeight.w400),
+                ),
+                trailing: Text(
+                  '${order.items.length} Items purchased',
+                  style: appTextTheme.titleMedium!
+                      .copyWith(fontWeight: FontWeight.w400),
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  'Price',
+                  style: appTextTheme.titleMedium!
+                      .copyWith(fontWeight: FontWeight.w400),
+                ),
+                trailing: Text(
+                  '\$ $total',
+                  style: appTextTheme.titleMedium!.copyWith(
+                      color: color.AppColors.primary,
+                      fontWeight: FontWeight.w700),
+                ),
+              ),
+            ],
           ),
-          CustomPaint(
-            painter: DottedHorizontal(),
-          ),
-          ListTile(
-            title: const Text(
-              'Order status',
-            ),
-            trailing: Text(order.status),
-            minVerticalPadding: 0,
-          ),
-          ListTile(
-            title: const Text(
-              'Items',
-            ),
-            trailing: Text('${order.items.length} Items purchased'),
-            minVerticalPadding: 0,
-          ),
-          ListTile(
-            title: const Text('Price'),
-            trailing: Text(
-              '\$766.86',
-              style:
-                  appTextTheme.displaySmall!.copyWith(color: Colors.blueAccent),
-            ),
-            minVerticalPadding: 0,
-          ),
-        ],
+        ),
       ),
     );
   }
