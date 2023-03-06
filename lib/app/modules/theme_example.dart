@@ -68,8 +68,8 @@ class _TestThemePageState extends State<TestThemePage> {
 
       streamSubscription = Geolocator.getPositionStream().listen((Position position) {
 
-        latitude = 'Latitude: ${position.latitude}';
-        longitude = 'Longitude: ${position.longitude}';
+        latitude = 'Latitude: ${position.latitude.toStringAsFixed(5)}';
+        longitude = 'Longitude: ${position.longitude.toStringAsFixed(5)}';
         getAddressPosition(position);
 
       });
