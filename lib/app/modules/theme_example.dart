@@ -45,7 +45,7 @@ class _TestThemePageState extends State<TestThemePage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentPage,
         onTap: changePage,
-        items: const <BottomNavigationBarItem>[
+        items:const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
             label: 'Home',
@@ -56,7 +56,9 @@ class _TestThemePageState extends State<TestThemePage> {
           ),
           BottomNavigationBarItem(
             label: 'Cart',
-            icon: Badge(
+            icon: 
+            
+            Badge(
               label: Text('2'),
               child: Icon(Icons.shopping_basket_outlined),
             ),

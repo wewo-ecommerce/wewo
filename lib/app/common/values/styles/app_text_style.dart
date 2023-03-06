@@ -3,6 +3,20 @@ import 'package:flutter/material.dart';
 class AppTextStyle {
   const AppTextStyle._();
 
+  ///[TextStyle]
+  static const TextStyle _typeText = TextStyle(
+      color: Colors.black, fontWeight: FontWeight.w400, fontFamily: 'Poppins');
+
+  static final TextStyle normaltypeText = _typeText.copyWith(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+
+  static final TextStyle semiBoldtypeText = _typeText.copyWith(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+
   static const TextStyle _textStyle = TextStyle(
       color: Colors.black,
       fontWeight: FontWeight.w400,
