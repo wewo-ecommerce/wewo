@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:new_wewo/app/modules/account/views/account_view.dart';
 import 'package:new_wewo/app/modules/notification/bindings/notification_view_binding.dart';
 import 'package:new_wewo/app/modules/address/bindings/address_binding.dart';
 import 'package:new_wewo/app/modules/address/views/address_create.dart';
@@ -18,14 +19,14 @@ import '../modules/home/views/home_view.dart';
 import '../modules/notification/views/notification_view.dart';
 import '../modules/theme_example.dart';
 import 'app_parameters.dart';
-
+import '../modules/account/bindings/account_view_binding.dart';
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = '/theme';
-
+  //static const INITIAL = '/theme';
+  static const INITIAL = _Paths.ACCOUNT;
   static final routes = [
     GetPage(
       name: _Paths.HOME,
@@ -61,6 +62,11 @@ class AppPages {
             page: () => const AddressEditScreen(),
           ),
         ]),
+    GetPage(
+      name: _Paths.ACCOUNT,
+      page: () => const AccountView(),
+      binding: AccountBinding(),
+    ),
     GetPage(name: '/theme', page: () => const TestThemePage()),
   ];
 }

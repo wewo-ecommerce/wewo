@@ -1,31 +1,16 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
-import '../views/profile_view.dart';
+import 'package:new_wewo/app/data/models/user_model.dart';
+import 'package:new_wewo/app/modules/account/controllers/account_controller.dart';
+import 'package:get/get.dart';
 
-class ChangeNameView extends StatefulWidget {
+class ChangeNameView extends GetView<AccountController> {
   const ChangeNameView({super.key});
 
   @override
-  State<ChangeNameView> createState() => _ChangeNameViewState();
-}
-
-class _ChangeNameViewState extends State<ChangeNameView> {
-  var firtNameController = TextEditingController();
-
-  var lastNameController = TextEditingController();
-  String initialFirstName = "Hoang";
-  String initialLastName = "Tran";
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    firtNameController.text = initialFirstName;
-    lastNameController.text = initialLastName;
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final accountController = Get.find<AccountController>();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -34,7 +19,8 @@ class _ChangeNameViewState extends State<ChangeNameView> {
         ),
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Get.back();
+            accountController.resetName();
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -49,41 +35,45 @@ class _ChangeNameViewState extends State<ChangeNameView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const SizedBox(
-              height: 10,
-            ),
-            const Text(
-              "First name",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              height: 40,
             ),
             const SizedBox(
-              height: 10,
+              height: 40,
+              child: Text(
+                "Họ",
+                style: TextStyle(fontSize: 15),
+              ),
             ),
+
             TextField(
-              controller: firtNameController,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
-                  ),
-                  hintText: "Valverde"),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Text(
-              "Last name",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            TextField(
-              controller: lastNameController,
+              controller: accountController.lastNameController,
               decoration: const InputDecoration(
                   border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.blue),
                   ),
                   hintText: "Federico"),
             ),
+            // ),
+            const SizedBox(
+              height: 20,
+            ),
+            const SizedBox(
+              height: 40,
+              child: Text(
+                "Tên",
+                style: TextStyle(fontSize: 15),
+              ),
+            ),
+
+            TextField(
+              controller: accountController.firstNameController,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue),
+                  ),
+                  hintText: "Valverde"),
+            ),
+            //  ),
             const Spacer(),
             SizedBox(
               width: double.infinity,
@@ -96,7 +86,19 @@ class _ChangeNameViewState extends State<ChangeNameView> {
                   ),
                 ),
                 onPressed: () {
-                  // update infor user
+                  String fullName =
+                      "${accountController.lastNameController.text} ${accountController.firstNameController.text}";
+                  UserModel user = UserModel(
+                      id: accountController.user.value.id,
+                      email: accountController.emailController.text,
+                      fullName: fullName,
+                      dateOfBirth: accountController.user.value.dateOfBirth,
+                      urlAvatar: accountController.user.value.urlAvatar,
+                      phone: accountController.user.value.phone,
+                      gender: accountController.user.value.gender,
+                      type: accountController.user.value.type,
+                      tokens: accountController.user.value.tokens);
+                  accountController.updateInfor(user);
                 },
                 child: const Text("Lưu"),
               ),

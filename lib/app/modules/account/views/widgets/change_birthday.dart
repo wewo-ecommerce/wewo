@@ -1,34 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:get/get.dart';
+import 'package:new_wewo/app/common/util/exports.dart';
+import 'package:new_wewo/app/data/models/user_model.dart';
+import 'package:new_wewo/app/modules/account/controllers/account_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ChangeBirthday extends StatefulWidget {
-  const ChangeBirthday({super.key});
-  @override
-  State<ChangeBirthday> createState() => _ChangeBirthdayState();
-}
+class ChangeBirthday extends GetView<AccountController> {
+  ChangeBirthday({super.key});
 
-class _ChangeBirthdayState extends State<ChangeBirthday> {
-  DateTime birthday = DateTime(2002, 1, 21);
-  void _chooseDate() {
-    showDatePicker(
-            context: context,
-            initialDate: DateTime.now(),
-            firstDate: DateTime.now().subtract(
-                const Duration(days: 365 * 100)), // first day is 100 years ago
-            lastDate: DateTime.now())
-        .then((value) {
-      if (value == null) {
-        return;
-      } else {
-        setState(() {
-          birthday = value;
-        });
-      }
-    });
-  }
-
+  DateTime? date;
   @override
   Widget build(BuildContext context) {
+    final accountController = Get.find<AccountController>();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -37,7 +21,8 @@ class _ChangeBirthdayState extends State<ChangeBirthday> {
         ),
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Get.back();
+            accountController.resetBirthday();
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -52,8 +37,14 @@ class _ChangeBirthdayState extends State<ChangeBirthday> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const SizedBox(
-              height: 30,
-              child: Text("Ngày sinh của bạn"),
+              height: 40,
+            ),
+            const SizedBox(
+              height: 40,
+              child: Text(
+                "Ngày sinh của bạn",
+                style: TextStyle(fontSize: 15),
+              ),
             ),
             Container(
               decoration: BoxDecoration(
@@ -67,11 +58,14 @@ class _ChangeBirthdayState extends State<ChangeBirthday> {
                   const SizedBox(
                     width: 20,
                   ),
-                  Text(DateFormat.yMd().format(birthday)),
+                  Obx(() {
+                    return Text(DateFormat.yMd()
+                        .format(DateTime.parse(accountController.date.value)));
+                  }),
                   const Spacer(),
                   IconButton(
-                    onPressed: () {
-                      _chooseDate();
+                    onPressed: () async {
+                      date = await accountController.chooseDate();
                     },
                     icon: const Icon(Icons.calendar_month_outlined),
                   ),
@@ -89,7 +83,19 @@ class _ChangeBirthdayState extends State<ChangeBirthday> {
                     ),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  UserModel user = UserModel(
+                      id: accountController.user.value.id,
+                      email: accountController.emailController.text,
+                      fullName: accountController.user.value.fullName,
+                      dateOfBirth: Timestamp.fromDate(date!),
+                      urlAvatar: accountController.user.value.urlAvatar,
+                      phone: accountController.user.value.phone,
+                      gender: accountController.user.value.gender,
+                      type: accountController.user.value.type,
+                      tokens: accountController.user.value.tokens);
+                  accountController.updateInfor(user);
+                },
                 child: const Text("Lưu"),
               ),
             ),

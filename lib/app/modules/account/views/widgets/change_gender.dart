@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:new_wewo/app/data/models/user_model.dart';
+import 'package:new_wewo/app/modules/account/controllers/account_controller.dart';
 
-class ChangeGender extends StatefulWidget {
-  const ChangeGender({super.key});
-
-  @override
-  State<ChangeGender> createState() => _ChangeGenderState();
-}
-
-class _ChangeGenderState extends State<ChangeGender> {
-  String gender = "Nữ";
+class ChangeGender extends GetView<AccountController> {
   List<String> genders = ["Nam", "Nữ", "Khác"];
   @override
   Widget build(BuildContext context) {
+    final accountController = Get.find<AccountController>();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Đổi mật khẩu",
+          "Giới tính",
           style: TextStyle(color: Colors.black),
         ),
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Get.back();
+            accountController.resetGender();
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -35,11 +32,14 @@ class _ChangeGenderState extends State<ChangeGender> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const SizedBox(
-              height: 20,
+              height: 40,
             ),
             const SizedBox(
-              height: 50,
-              child: Text("Chọn giới tính"),
+              height: 40,
+              child: Text(
+                "Chọn giới tính",
+                style: TextStyle(fontSize: 15),
+              ),
             ),
             DropdownButtonFormField<String>(
               isDense: true,
@@ -52,11 +52,9 @@ class _ChangeGenderState extends State<ChangeGender> {
                 );
               }).toList(),
               onChanged: (value) {
-                setState(() {
-                  gender = value!;
-                });
+                accountController.toggleGender(value!);
               },
-              value: gender,
+              value: accountController.gender.value,
             ),
             const Spacer(),
             SizedBox(
@@ -70,7 +68,17 @@ class _ChangeGenderState extends State<ChangeGender> {
                   ),
                 ),
                 onPressed: () {
-                  print("Gender: $gender");
+                  UserModel user = UserModel(
+                      id: accountController.user.value.id,
+                      email: accountController.emailController.text,
+                      fullName: accountController.user.value.fullName,
+                      dateOfBirth: accountController.user.value.dateOfBirth,
+                      urlAvatar: accountController.user.value.urlAvatar,
+                      phone: accountController.user.value.phone,
+                      gender: accountController.gender.value,
+                      type: accountController.user.value.type,
+                      tokens: accountController.user.value.tokens);
+                  accountController.updateInfor(user);
                 },
                 child: const Text("Lưu"),
               ),

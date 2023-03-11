@@ -17,7 +17,7 @@ class _TestThemePageState extends State<TestThemePage> {
     Placeholder(),
     Placeholder(),
     Placeholder(),
-    AccountView(),
+    Placeholder(),
   ];
 
   void changePage(int index) {

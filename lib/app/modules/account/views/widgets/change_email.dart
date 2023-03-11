@@ -1,26 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:new_wewo/app/data/models/user_model.dart';
+import 'package:new_wewo/app/modules/account/controllers/account_controller.dart';
+import 'package:new_wewo/app/common/util/validators.dart';
 
-class ChangeEmail extends StatefulWidget {
-  const ChangeEmail({super.key});
-
-  @override
-  State<ChangeEmail> createState() => _ChangeEmailState();
-}
-
-class _ChangeEmailState extends State<ChangeEmail> {
-  var formKey = GlobalKey<FormState>();
-
-  var emailController = TextEditingController();
-  String email = "abc@gmail.com";
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    emailController.text = email;
-  }
+class ChangeEmail extends GetView<AccountController> {
+  ChangeEmail({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final accountController = Get.find<AccountController>();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -29,7 +18,8 @@ class _ChangeEmailState extends State<ChangeEmail> {
         ),
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Get.back();
+            accountController.resetEmail();
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -40,33 +30,31 @@ class _ChangeEmailState extends State<ChangeEmail> {
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Form(
-          key: formKey,
+          key: accountController.loginFormKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(
-                height: 30,
-                child: Text("Email"),
+                height: 40,
+              ),
+              const SizedBox(
+                height: 40,
+                child: Text(
+                  "Email",
+                  style: TextStyle(fontSize: 15),
+                ),
               ),
               TextFormField(
                 validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Nhập email";
+                  //  return Validators.validateEmail(value);
+                  if (!GetUtils.isEmail(value!)) {
+                    return "Nhập email hợp lệ";
                   } else {
-                    String patern =
-                        r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$';
-                    final regExp = RegExp(patern);
-                    {
-                      if (!regExp.hasMatch(value)) {
-                        return "Nhập email hợp lệ";
-                      } else {
-                        return null;
-                      }
-                    }
+                    return null;
                   }
                 },
-                controller: emailController,
+                controller: accountController.emailController,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.email_rounded),
                   border: const OutlineInputBorder(
@@ -88,12 +76,22 @@ class _ChangeEmailState extends State<ChangeEmail> {
                     ),
                   ),
                   onPressed: () {
-                    final isValid = formKey.currentState!.validate();
+                    final isValid =
+                        accountController.loginFormKey.currentState!.validate();
                     if (isValid) {
-                      print("Right");
-                      // update infor user
+                      UserModel user = UserModel(
+                          id: accountController.user.value.id,
+                          email: accountController.emailController.text,
+                          fullName: accountController.user.value.fullName,
+                          dateOfBirth: accountController.user.value.dateOfBirth,
+                          urlAvatar: accountController.user.value.urlAvatar,
+                          phone: accountController.user.value.phone,
+                          gender: accountController.user.value.gender,
+                          type: accountController.user.value.type,
+                          tokens: accountController.user.value.tokens);
+                      accountController.updateInfor(user);
                     } else {
-                      print("Wrong");
+                      // wrong
                     }
                   },
                   child: const Text("Lưu"),

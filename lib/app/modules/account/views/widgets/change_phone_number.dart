@@ -1,32 +1,23 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:new_wewo/app/data/models/user_model.dart';
+import 'package:new_wewo/app/modules/account/controllers/account_controller.dart';
 
-class ChangePhoneNumber extends StatefulWidget {
-  ChangePhoneNumber({super.key});
-
-  @override
-  State<ChangePhoneNumber> createState() => _ChangePhoneNumberState();
-}
-
-class _ChangePhoneNumberState extends State<ChangePhoneNumber> {
+class ChangePhoneNumber extends GetView<AccountController> {
   var formKey = GlobalKey<FormState>();
 
   var phoneController = TextEditingController();
 
-  final RegExp _numericRegex = RegExp(r'^\d+$');
-  String initialPhoneNumber = "0987654321";
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    phoneController.text = initialPhoneNumber;
-  }
-
+  final RegExp numericRegex = RegExp(r'^\d+$');
   bool isNumeric(String value) {
-    return _numericRegex.hasMatch(value);
+    return numericRegex.hasMatch(value);
   }
 
   @override
   Widget build(BuildContext context) {
+    final accountController = Get.find<AccountController>();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -35,7 +26,8 @@ class _ChangePhoneNumberState extends State<ChangePhoneNumber> {
         ),
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Get.back();
+            accountController.resetPhone();
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -46,25 +38,34 @@ class _ChangePhoneNumberState extends State<ChangePhoneNumber> {
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Form(
-          key: formKey,
+          key: accountController.loginFormKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(
-                height: 30,
-                child: Text("Số điện thoại"),
+                height: 40,
+              ),
+              const SizedBox(
+                height: 40,
+                child: Text(
+                  "Số điện thoại",
+                  style: TextStyle(fontSize: 15),
+                ),
               ),
               TextFormField(
-                controller: phoneController,
+                controller: accountController.phoneController,
+                onSaved: (value) {
+                  accountController.phoneController.text = value!;
+                },
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return "Nhập số điện thoại";
+                    return "Input again";
                   } else if (!isNumeric(value)) {
-                    return "Nhập sai, số điện thoại không thể có chữ cái";
-                  } else {
-                    return null;
+                    return "Provide valid phone";
                   }
+                  return null;
                 },
                 keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
@@ -94,10 +95,23 @@ class _ChangePhoneNumberState extends State<ChangePhoneNumber> {
                     ),
                   ),
                   onPressed: () {
-                    final isValid = formKey.currentState!.validate();
-                    isValid
-                        ? print("It is valid") // update infor user
-                        : print("Wrong");
+                    final isValid =
+                        accountController.loginFormKey.currentState!.validate();
+                    if (isValid) {
+                      UserModel user = UserModel(
+                          id: accountController.user.value.id,
+                          email: accountController.user.value.email,
+                          fullName: accountController.user.value.fullName,
+                          dateOfBirth: accountController.user.value.dateOfBirth,
+                          urlAvatar: accountController.user.value.urlAvatar,
+                          phone: accountController.phoneController.text,
+                          gender: accountController.user.value.gender,
+                          type: accountController.user.value.type,
+                          tokens: accountController.user.value.tokens);
+                      accountController.updateInfor(user);
+                    } else {
+                      print("Wrong");
+                    }
                   },
                   child: const Text("Lưu"),
                 ),

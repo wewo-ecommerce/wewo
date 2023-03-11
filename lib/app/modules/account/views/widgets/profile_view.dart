@@ -1,30 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:new_wewo/app/data/models/user_model.dart';
-import '../views/change_phone_number.dart';
-import '../views/change_email.dart';
-import '../views/change_password.dart';
-import '../views/change_name_view.dart';
-import '../views/change_birthday.dart';
-import '../views/change_gender.dart';
+import 'package:new_wewo/app/modules/account/controllers/account_controller.dart';
+import 'change_phone_number.dart';
+import 'change_email.dart';
+import 'change_password.dart';
+import 'change_name_view.dart';
+import 'change_birthday.dart';
+import 'change_gender.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import 'package:get/get.dart';
 
-class ProfileView extends StatelessWidget {
+class ProfileView extends GetView<AccountController> {
   ProfileView({super.key});
   bool isVisible = true;
-  UserModel user = UserModel(
-      id: "id",
-      email: "email@gmail.com",
-      fullName: "Trần Văn Hoàng",
-      dateOfBirth: Timestamp.fromDate(DateTime(2000, 10, 23)),
-      urlAvatar: "https://www.w3schools.com/howto/img_avatar.png",
-      phone: "0987654321",
-      gender: "Nam",
-      type: "type",
-      tokens: ["token1", "token2"]);
   @override
   Widget build(BuildContext context) {
+    final accountController = Get.find<AccountController>();
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -34,7 +28,7 @@ class ProfileView extends StatelessWidget {
         ),
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Get.back();
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -52,40 +46,34 @@ class ProfileView extends StatelessWidget {
             ),
             ListTile(
               onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (BuildContext context) {
-                  return ChangeNameView();
-                }));
+                Get.to(() => const ChangeNameView());
               },
               leading: FittedBox(
                 child: CircleAvatar(
                   radius: 60,
                   backgroundImage: NetworkImage(
-                    user.urlAvatar,
+                    accountController.user.value.urlAvatar,
                   ),
                 ),
               ),
-              title: Text(user.fullName),
-              subtitle: Text(user.email),
+              title: Obx(() => Text(accountController.user.value.fullName)),
+              subtitle: Obx(() => Text(accountController.user.value.email)),
               //    minVerticalPadding: 30,
             ),
             const SizedBox(
               height: 20,
             ),
             ListTile(
-              leading: Icon(Icons.female),
-              title: Text("Giới tính"),
+              leading: const Icon(Icons.female),
+              title: const Text("Giới tính"),
               trailing: FittedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(user.gender),
+                    Obx(() => Text(accountController.user.value.gender)),
                     IconButton(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) {
-                            return const ChangeGender();
-                          }));
+                          Get.to(() => ChangeGender());
                         },
                         icon: const Icon(Icons.navigate_next_sharp))
                   ],
@@ -100,13 +88,13 @@ class ProfileView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(DateFormat.yMd().format(user.dateOfBirth.toDate())),
+                    Obx(
+                      () => Text(DateFormat.yMd().format(
+                          accountController.user.value.dateOfBirth.toDate())),
+                    ),
                     IconButton(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) {
-                            return const ChangeBirthday();
-                          }));
+                          Get.to(() => ChangeBirthday());
                         },
                         icon: const Icon(Icons.navigate_next_sharp))
                   ],
@@ -121,13 +109,10 @@ class ProfileView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(user.email),
+                    Obx(() => Text(accountController.user.value.email)),
                     IconButton(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) {
-                            return ChangeEmail();
-                          }));
+                          Get.to(() => ChangeEmail());
                         },
                         icon: const Icon(Icons.navigate_next_sharp))
                   ],
@@ -142,13 +127,10 @@ class ProfileView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(user.phone),
+                    Obx(() => Text(accountController.user.value.phone)),
                     IconButton(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) {
-                            return ChangePhoneNumber();
-                          }));
+                          Get.to(() => ChangePhoneNumber());
                         },
                         icon: const Icon(Icons.navigate_next_sharp))
                   ],
@@ -166,13 +148,7 @@ class ProfileView extends StatelessWidget {
                     const Text("************"),
                     IconButton(
                       onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) {
-                              return const ChangePassword();
-                            },
-                          ),
-                        );
+                        Get.to(() => ChangePassword());
                       },
                       icon: const Icon(Icons.navigate_next_sharp),
                     ),
