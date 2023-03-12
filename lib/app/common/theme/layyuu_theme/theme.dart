@@ -32,6 +32,7 @@ class LafyuuTheme {
       type: BottomNavigationBarType.fixed,
       selectedIconTheme: iconThemePrimary,
       unselectedIconTheme: iconTheme,
+      selectedItemColor: AppColors.primary,
       selectedLabelStyle:
           appTextTheme.headlineSmall?.copyWith(color: AppColors.primary),
       unselectedLabelStyle:

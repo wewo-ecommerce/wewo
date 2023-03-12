@@ -3,6 +3,7 @@ part of 'app_pages.dart';
 
 abstract class Routes {
   Routes._();
+  static const INIT = _Paths.START;
   static const HOME = _Paths.HOME;
   static const SHOPPING_CART = _Paths.SHOPPING_CART;
   static const STORE_VIEW = _Paths.STORE_VIEW;
@@ -22,6 +23,8 @@ abstract class _Paths {
   static const EDIT = "/edit";
   static const CREATE = "/create";
   static const DETAIL = "/detail";
+
+  static const START = "/";
   //HOME
   static const HOME = '/home';
   static const SHOPPING_CART = '/shopping_cart';
