@@ -1,4 +1,8 @@
 import 'package:get/get.dart';
+import 'package:new_wewo/app/modules/detail_order/bindings/detail_order_bindings.dart';
+import 'package:new_wewo/app/modules/detail_order/views/detail_order_view.dart';
+import 'package:new_wewo/app/modules/order_history/bindings/order_history_binding.dart';
+import 'package:new_wewo/app/modules/order_history/views/order_history_view.dart';
 import 'package:new_wewo/app/modules/notification/bindings/notification_view_binding.dart';
 import 'package:new_wewo/app/modules/address/bindings/address_binding.dart';
 import 'package:new_wewo/app/modules/address/views/address_create.dart';
@@ -50,25 +54,33 @@ class AppPages {
       binding: StoreViewBinding(),
     ),
     GetPage(
+      name: _Paths.ORDER_HISTORY,
+      page: () => const OrderHistoryView(),
+      binding: OrderHistoryBinding(),
+    ),
+    GetPage(
+        name: _Paths.DETAIL_ORDER,
+        page: () => const DetailOrderView(),
+        binding: DetailOrderBinding()),
+    GetPage(
       name: _Paths.NOTIFICATION,
       page: () => const NotificationView(),
       binding: NotificationViewBinding(),
     ),
     GetPage(
-      name: _Paths.ADDRESS,
-      page: () => const AddressListScreen(),
-      binding: AddressBinding(),
-      children: [
-        GetPage(
+        name: _Paths.ADDRESS,
+        page: () => const AddressListScreen(),
+        binding: AddressBinding(),
+        children: [
+          GetPage(
             name: _Paths.CREATE,
             page: () => const AddressCreateScreen(),
-        ),
-        GetPage(
+          ),
+          GetPage(
             name: _Paths.ADDRESS_EDIT,
             page: () => const AddressEditScreen(),
-        ),
-      ]
-    ),
+          ),
+        ]),
     GetPage(name: '/theme', page: () => const TestThemePage()),
   ];
 }

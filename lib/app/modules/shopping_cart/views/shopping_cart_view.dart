@@ -48,6 +48,13 @@ class ShoppingCartView extends GetView<ShoppingCartController> {
         ),
         actions: <Widget>[
           IconButton(
+            onPressed: () => Get.toNamed(Routes.ORDER_HISTORY),
+            icon: Icon(
+              Icons.shopping_bag_rounded,
+              size: 20.sp,
+            ),
+          ),
+          IconButton(
             icon: Icon(
               Icons.home,
               size: 20.sp,

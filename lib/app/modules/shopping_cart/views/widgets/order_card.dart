@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:new_wewo/app/common/util/exports.dart';
 
 class OrderCard extends StatelessWidget {
@@ -26,7 +27,7 @@ class OrderCard extends StatelessWidget {
             TextSpan(
               children: [
                 TextSpan(
-                  text: 'Tổng tiền: ',
+                  text: 'shopping_cart_total'.tr,
                   style: AppTextStyle.largeBoldTextStyle,
                 ),
                 TextSpan(
@@ -50,7 +51,7 @@ class OrderCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
-                'Đặt hàng',
+                'shopping_cart_order'.tr,
                 style: AppTextStyle.bodyStyle.copyWith(
                   color: Colors.white,
                 ),
